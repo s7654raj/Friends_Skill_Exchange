@@ -86,6 +86,9 @@ A collaborative platform designed to facilitate skill exchange between students 
 
 The application will be available at `http://localhost:3000`.
 
+
+![alt text](2.png)
+
 ## Usage
 
 1. **Registration**: Create an account as either a student or a project sponsor.
