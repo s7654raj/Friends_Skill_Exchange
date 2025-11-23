@@ -86,8 +86,13 @@ A collaborative platform designed to facilitate skill exchange between students 
 
 The application will be available at `http://localhost:3000`.
 
+## ScreenShots
 
+![alt text](1.png)
 ![alt text](2.png)
+![alt text](3.png)
+![alt text](4.png)
+![alt text](5.png)
 
 ## Usage
 
