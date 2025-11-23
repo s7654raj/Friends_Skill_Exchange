@@ -1,0 +1,354 @@
+import React, { useState, useEffect } from "react";
+
+const PublicHomepage = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const containerStyle = {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    backgroundColor: "#2D2D2D",
+  };
+
+  const titleContainerStyle = {
+    display: "flex",
+    backgroundColor: "#2D2D2D",
+    padding: "20px",
+    margin: "100px",
+    marginTop: "300px",
+    justifyContent: "center",
+    alignItems: "center",
+    border: "20px solid #EDE8D0",
+  };
+
+  const titleStyle = {
+    fontFamily: "Josefin Sans, sans-serif",
+    color: "#EDE8D0",
+    fontWeight: 700,
+    fontSize: "5.5rem",
+    textAlign: "center",
+  };
+
+  const contentTitleStyle = {
+    textAlign: "center",
+    color: "#2d2d2d",
+    fontFamily: "Oswald",
+    backgroundColor: "#F08080",
+    width: "100%",
+    fontSize: "4rem",
+    fontWeight: 700,
+    marginTop: "300px",
+  };
+
+  const descriptionStyle = {
+    fontFamily: "Montserrat, sans-serif",
+    fontSize: "1.2rem",
+    textAlign: "center",
+    color: "white",
+    maxWidth: "1000px",
+    margin: "60px",
+  };
+
+  const buttonStyle = {
+    backgroundColor: "#3BB4A1",
+    color: "white",
+    border: "none",
+    padding: "12px 24px",
+    fontSize: "1rem",
+    cursor: "pointer",
+    transition: "background-color 0.3s ease",
+  };
+
+  const imageStyle = {
+    position: "absolute",
+    left: `${scrollPosition}px`,
+    width: "400px",
+    justifyContent: "center",
+  };
+
+  const imageBelowStyle = {
+    position: "absolute",
+    right: `${scrollPosition}px`,
+    width: "400px",
+    justifyContent: "center",
+  };
+
+  const textContainer = {
+    textAlign: "center",
+    alignItems: "center",
+    marginBottom: "40px",
+  };
+
+  const handleButtonClick = () => {
+    // Handle button click event
+    console.log("Button clicked!");
+  };
+
+  return (
+    <div style={containerStyle}>
+      <div style={containerStyle}>
+        <div>
+          <img src={"/1.png"} alt="Above Image" style={imageStyle} />
+          <div style={titleContainerStyle}>
+            <h1 style={titleStyle}>FriendSkill Exchange</h1>
+          </div>
+          <img src={"/2.png"} alt="Below Image" style={imageBelowStyle} />
+        </div>
+      </div>
+      <h2 style={contentTitleStyle}>Why use FriendSkil Exchange?</h2>
+      <div id="why-skill-swap" style={textContainer}>
+        <div style={descriptionStyle}>
+          At FriendSkill Exchange, we believe in the power of mutual learning and collaboration. Here's why SwapSkill is the
+          ultimate platform for skill acquisition and knowledge exchange:
+          <br />
+          <br />
+          <br />
+          <h4 style={{ color: "#F08080" }}>➊ Learn From Experts:</h4> Gain insights and practical knowledge directly
+          from experienced mentors who excel in their respective fields. Whether it's mastering a new programming
+          language, honing your culinary skills, or delving into the world of digital marketing, our mentors are here to
+          guide you every step of the way.
+          <br />
+          <br />
+          <h4 style={{ color: "#F08080" }}>➋ Share Your Expertise:</h4> Have a skill or passion you're eager to share?
+          FriendSkill Exchange provides a platform for you to become a mentor yourself. Share your expertise with others, foster a
+          sense of community, and contribute to the growth of aspiring learners.
+          <br />
+          <br />
+          <h4 style={{ color: "#F08080" }}>➌ Collaborative Environment:</h4> Our community thrives on collaboration.
+          Connect with like-minded individuals, participate in group projects, and engage in discussions that fuel
+          creativity and innovation. FriendSkill Exchange isn't just about individual growth—it's about collective advancement.
+          <br />
+          <br />
+          <h4 style={{ color: "#F08080" }}>➍ Diverse Learning Opportunities:</h4> With FriendSkill Exchange, the possibilities are
+          endless and <b>free of cost</b>. Explore a wide range of topics and disciplines, from traditional crafts to
+          cutting-edge technologies. Our diverse library of skills ensures there's something for everyone, regardless of
+          your interests or background.
+          <br />
+          <br />
+          <h4 style={{ color: "#F08080" }}>➎ Continuous Growth:</h4> Learning is a lifelong journey, and FriendSkill Exchange is
+          here to support you every step of the way. Whether you're a novice or a seasoned professional, our platform
+          empowers you to continuously expand your knowledge, challenge yourself, and embrace new opportunities.
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PublicHomepage;
+
+// import React, { useState, useEffect, useRef } from "react";
+
+// const PublicHomepage = () => {
+//   const [scrollPosition, setScrollPosition] = useState(0);
+//   const [isMounted, setIsMounted] = useState(false);
+//   const [isContentVisible, setIsContentVisible] = useState(false);
+//   const [isTitleHovered, setIsTitleHovered] = useState(false);
+//   const contentRef = useRef(null);
+//   const parallaxFactor = 0.3;
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setScrollPosition(window.scrollY);
+//     };
+
+//     window.addEventListener("scroll", handleScroll);
+//     setIsMounted(true);
+
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//     };
+//   }, []);
+
+//   useEffect(() => {
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach(entry => {
+//           if (entry.isIntersecting) {
+//             setIsContentVisible(true);
+//           }
+//         });
+//       },
+//       { threshold: 0.1 }
+//     );
+
+//     if (contentRef.current) {
+//       observer.observe(contentRef.current);
+//     }
+
+//     return () => {
+//       if (contentRef.current) {
+//         observer.unobserve(contentRef.current);
+//       }
+//     };
+//   }, []);
+
+//   const containerStyle = {
+//     display: "flex",
+//     flexDirection: "column",
+//     alignItems: "center",
+//     backgroundColor: "#2D2D2D",
+//     overflowX: "hidden",
+//   };
+
+//   const titleContainerStyle = {
+//     display: "flex",
+//     backgroundColor: "#2D2D2D",
+//     padding: "20px",
+//     margin: "100px",
+//     marginTop: "300px",
+//     justifyContent: "center",
+//     alignItems: "center",
+//     border: `20px solid ${isTitleHovered ? "#F08080" : "#EDE8D0"}`,
+//     transform: isMounted ? "translateY(0)" : "translateY(20px)",
+//     opacity: isMounted ? 1 : 0,
+//     transition: "all 0.6s ease-out, border-color 0.3s ease",
+//   };
+
+//   const titleStyle = {
+//     fontFamily: "Josefin Sans, sans-serif",
+//     color: "#EDE8D0",
+//     fontWeight: 700,
+//     fontSize: "5.5rem",
+//     textAlign: "center",
+//   };
+
+//   const contentTitleStyle = {
+//     textAlign: "center",
+//     color: "#2d2d2d",
+//     fontFamily: "Oswald",
+//     backgroundColor: "#F08080",
+//     width: "100%",
+//     fontSize: "4rem",
+//     fontWeight: 700,
+//     marginTop: "300px",
+//     opacity: isContentVisible ? 1 : 0,
+//     transform: isContentVisible ? "translateY(0)" : "translateY(20px)",
+//     transition: "all 0.6s ease-out",
+//   };
+
+//   const descriptionStyle = {
+//     fontFamily: "Montserrat, sans-serif",
+//     fontSize: "1.2rem",
+//     textAlign: "center",
+//     color: "white",
+//     maxWidth: "1000px",
+//     margin: "60px",
+//     opacity: isContentVisible ? 1 : 0,
+//     transform: isContentVisible ? "translateY(0)" : "translateY(20px)",
+//     transition: "all 0.6s ease-out 0.2s",
+//   };
+
+//   const imageStyle = {
+//     position: "absolute",
+//     transform: `translateX(${scrollPosition * parallaxFactor}px)`,
+//     width: "400px",
+//     transition: "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+//   };
+
+//   const imageBelowStyle = {
+//     position: "absolute",
+//     transform: `translateX(-${scrollPosition * parallaxFactor}px)`,
+//     width: "400px",
+//     transition: "transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+//   };
+
+//   const textContainer = {
+//     textAlign: "center",
+//     alignItems: "center",
+//     marginBottom: "40px",
+//   };
+
+//   return (
+//     <div style={containerStyle}>
+//       <div style={containerStyle}>
+//         <div>
+//           <img 
+//             src={"/1.png"} 
+//             alt="Above" 
+//             style={imageStyle} 
+//           />
+//           <div 
+//             style={titleContainerStyle}
+//             onMouseEnter={() => setIsTitleHovered(true)}
+//             onMouseLeave={() => setIsTitleHovered(false)}
+//           >
+//             <h1 style={titleStyle}>FriendSkill Exchange</h1>
+//           </div>
+//           <img 
+//             src={"/2.png"} 
+//             alt="Below" 
+//             style={imageBelowStyle} 
+//           />
+//         </div>
+//       </div>
+
+//       <h2 
+//         style={contentTitleStyle}
+//         ref={contentRef}
+//       >
+//         Why use FriendSkil Exchange?
+//       </h2>
+
+//       <div id="why-skill-swap" style={{ textAlign: "center", alignItems: "center", marginBottom: "40px" }}>
+       
+//         <div id="why-skill-swap" style={textContainer}>
+//         <div style={descriptionStyle}>
+//           At FriendSkill Exchange, we believe in the power of mutual learning and collaboration. Here's why SwapSkill is the
+//           ultimate platform for skill acquisition and knowledge exchange:
+//           <br />
+//           <br />
+//           <br />
+//           <h4 style={{ color: "#F08080" }}>➊ Learn From Experts:</h4> Gain insights and practical knowledge directly
+//           from experienced mentors who excel in their respective fields. Whether it's mastering a new programming
+//           language, honing your culinary skills, or delving into the world of digital marketing, our mentors are here to
+//           guide you every step of the way.
+//           <br />
+//           <br />
+//           <h4 style={{ color: "#F08080" }}>➋ Share Your Expertise:</h4> Have a skill or passion you're eager to share?
+//           FriendSkill Exchange provides a platform for you to become a mentor yourself. Share your expertise with others, foster a
+//           sense of community, and contribute to the growth of aspiring learners.
+//           <br />
+//           <br />
+//           <h4 style={{ color: "#F08080" }}>➌ Collaborative Environment:</h4> Our community thrives on collaboration.
+//           Connect with like-minded individuals, participate in group projects, and engage in discussions that fuel
+//           creativity and innovation. FriendSkill Exchange isn't just about individual growth—it's about collective advancement.
+//           <br />
+//           <br />
+//           <h4 style={{ color: "#F08080" }}>➍ Diverse Learning Opportunities:</h4> With FriendSkill Exchange, the possibilities are
+//           endless and <b>free of cost</b>. Explore a wide range of topics and disciplines, from traditional crafts to
+//           cutting-edge technologies. Our diverse library of skills ensures there's something for everyone, regardless of
+//           your interests or background.
+//           <br />
+//           <br />
+//           <h4 style={{ color: "#F08080" }}>➎ Continuous Growth:</h4> Learning is a lifelong journey, and FriendSkill Exchange is
+//           here to support you every step of the way. Whether you're a novice or a seasoned professional, our platform
+//           empowers you to continuously expand your knowledge, challenge yourself, and embrace new opportunities.
+//         </div>
+     
+//         </div>
+//       </div>
+
+//       <style>{`
+//         @keyframes float {
+//           0% { transform: translateY(0px); }
+//           50% { transform: translateY(-20px); }
+//           100% { transform: translateY(0px); }
+//         }
+//       `}</style>
+//     </div>
+//   );
+// };
+
+// export default PublicHomepage;
